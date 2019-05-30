@@ -1,0 +1,43 @@
+<div id="page_wrapper">
+<p id="notice"><%= notice %></p>
+
+<h1>Platos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Restaurant</th>
+      <th>Sede</th>
+      <th>Nombre de plato</th>
+      <th>Precio</th>
+      <th>Categoria</th>
+      <th>Descripcion</th>
+      <th>Porciones</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @platos.each do |plato| %>
+      
+      <tr>
+        <td><%= Restaurant.find(Sede.find(plato.sede_id).restaurant_id).razon_social %></td>
+        <td><%= Sede.find(plato.sede_id).direccion %></td>
+        <td><%= plato.nombre_plato %></td>
+        <td><%= plato.precio_plato %></td>
+        <td><%= plato.categoria_plato %></td>
+        <td><%= plato.descripcion_plato %></td>
+        <td><%= plato.cantidad_porciones %></td>
+        <td><%= link_to 'Show', plato %></td>
+        <td><%= link_to 'Edit', edit_plato_path(plato) %></td>
+        <td><%= link_to 'Destroy', plato, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+       
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Plato', new_plato_path %>
+</div>
